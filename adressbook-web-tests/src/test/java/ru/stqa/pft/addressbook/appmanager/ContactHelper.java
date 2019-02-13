@@ -27,7 +27,7 @@ public class ContactHelper extends HelperBase{
     }
 
     public void selectUser() {
-        click(By.id("1"));
+        click(By.name("selected[]"));
     }
 
     public void initUserModification() {
@@ -36,5 +36,13 @@ public class ContactHelper extends HelperBase{
 
     public void submitUserModification() {
         click(By.name("update"));
+    }
+
+    public void initUserDeletion() {
+        click(By.xpath("//input[@value='Delete']"));
+    }
+
+    public void acceptDeletion() {
+        acceptAlert();
     }
 }
