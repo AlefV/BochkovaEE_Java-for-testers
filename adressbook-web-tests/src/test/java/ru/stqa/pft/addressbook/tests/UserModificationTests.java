@@ -7,9 +7,12 @@ public class UserModificationTests extends TestBase{
 
     @Test
     public void testUserModification(){
+        if (! app.getContactHelper().isThereAUser()){
+            app.getContactHelper().createAUser(new UserData("Petr", "Ivanov", "address", "123456789", "test@test.com"));
+        }
         app.getContactHelper().selectUser();
         app.getContactHelper().initUserModification();
-        app.getContactHelper().fillUserForm(new UserData("Petr", "Ivanov", "address", "123456789", "test@test.com", null), false);
+        app.getContactHelper().fillUserForm(new UserData("Petr", "Ivanov", "address", "123456789", "test@test.com"));
         app.getContactHelper().submitUserModification();
     }
 }

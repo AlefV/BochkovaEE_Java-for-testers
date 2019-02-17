@@ -16,18 +16,13 @@ public class ContactHelper extends HelperBase{
         click(By.xpath("(//input[@name='submit'])[2]"));
     }
 
-    public void fillUserForm(UserData userData, boolean creation) {
+    public void fillUserForm(UserData userData) {
         type(By.name("firstname"), userData.getFirstName());
         type(By.name("lastname"), userData.getLastName());
         type(By.name("address"), userData.getAddress());
         type(By.name("home"), userData.getPhoneHome());
         type(By.name("email"), userData.getEmail());
 
-        if (creation){
-            new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(userData.getGroup());
-        }else {
-            Assert.assertFalse(isElementPresent(By.name("new_group")));
-        }
     }
 
     public void initUserCreation() {
@@ -52,5 +47,22 @@ public class ContactHelper extends HelperBase{
 
     public void acceptDeletion() {
         acceptAlert();
+    }
+    public void gotoHomePage(){
+        if (isElementPresent(By.id("maintable"))){
+            return;
+        }
+        click(By.linkText("home"));
+    }
+
+    public void createAUser(UserData userData) {
+        initUserCreation();
+        fillUserForm(userData);
+        submitUserCreation();
+        gotoHomePage();
+    }
+
+    public boolean isThereAUser() {
+        return  isElementPresent(By.name(("selected[]")));
     }
 }
