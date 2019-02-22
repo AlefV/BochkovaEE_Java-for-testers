@@ -3,15 +3,16 @@ package ru.stqa.pft.addressbook.tests;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.UserData;
 
-public class UserDeletionTests extends TestBase {
+public class ContactModificationTests extends TestBase{
 
     @Test
-    public void testUserDeletion(){
+    public void testContactModification(){
         if (! app.getContactHelper().isThereAUser()){
             app.getContactHelper().createAUser(new UserData("Petr", "Ivanov", "address", "123456789", "test@test.com"));
         }
         app.getContactHelper().selectUser();
-        app.getContactHelper().initUserDeletion();
-        app.getContactHelper().acceptDeletion();
+        app.getContactHelper().initUserModification();
+        app.getContactHelper().fillUserForm(new UserData("Petr", "Ivanov", "address", "123456789", "test@test.com"));
+        app.getContactHelper().submitUserModification();
     }
 }
