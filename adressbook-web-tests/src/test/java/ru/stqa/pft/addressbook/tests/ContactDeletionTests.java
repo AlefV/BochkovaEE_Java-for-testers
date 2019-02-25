@@ -10,7 +10,7 @@ import java.util.List;
 public class ContactDeletionTests extends TestBase {
 
     @Test
-    public void testContactDeletion(){
+    public void testContactDeletion() throws InterruptedException {
         if (! app.getContactHelper().isThereAUser()){
             app.getContactHelper().createAUser(new UserData("Petr", "Ivanov", "address", "123456789", "test@test.com"));
         }
@@ -18,6 +18,8 @@ public class ContactDeletionTests extends TestBase {
         app.getContactHelper().selectUser(before.size()-1);
         app.getContactHelper().initUserDeletion();
         app.getContactHelper().acceptDeletion();
+        Thread.sleep(5000);
+        app.getContactHelper().gotoHomePage();
         List<UserData> after = app.getContactHelper().getContactList();
         Assert.assertEquals(after.size(),before.size()-1);
 
