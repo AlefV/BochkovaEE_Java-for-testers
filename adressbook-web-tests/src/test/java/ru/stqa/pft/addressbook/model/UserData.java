@@ -3,6 +3,7 @@ package ru.stqa.pft.addressbook.model;
 import java.util.Objects;
 
 public class UserData {
+    private int id;
     private final String firstName;
     private final String lastName;
     private final String address;
@@ -10,6 +11,20 @@ public class UserData {
     private final String email;
 
     public UserData(String firstName, String lastName, String address, String phoneHome, String email) {
+        this.id = Integer.MAX_VALUE;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.phoneHome = phoneHome;
+        this.email = email;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public UserData(int id, String firstName, String lastName, String address, String phoneHome, String email) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;

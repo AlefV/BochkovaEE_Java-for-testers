@@ -24,8 +24,8 @@ public class ContactDeletionTests extends TestBase {
         Assert.assertEquals(after.size(),before.size()-1);
 
         before.remove(before.size()-1);
-        before.sort(Comparator.comparing(m->m.getLastName()));
-        after.sort(Comparator.comparing(m->m.getLastName()));
+      //  before.sort(Comparator.comparing(m->m.getLastName()));
+      //  after.sort(Comparator.comparing(m->m.getLastName()));
         Assert.assertEquals(before, after);
     }
 }

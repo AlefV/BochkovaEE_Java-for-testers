@@ -27,8 +27,11 @@ public class ContactModificationTests extends TestBase{
 
         before.remove(before.size()-1);
         before.add(user);
-        before.sort(Comparator.comparing(m->m.getLastName()));
-        after.sort(Comparator.comparing(m->m.getLastName()));
+        Comparator<? super UserData> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());
+        before.sort(byId);
+        after.sort(byId);
+        // before.sort(Comparator.comparing(m->m.getLastName()));
+       // after.sort(Comparator.comparing(m->m.getLastName()));
         Assert.assertEquals(before, after);
     }
 }
