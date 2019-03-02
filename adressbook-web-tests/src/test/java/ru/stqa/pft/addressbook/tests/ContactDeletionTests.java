@@ -1,31 +1,35 @@
 package ru.stqa.pft.addressbook.tests;
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.UserData;
 
-import java.util.Comparator;
 import java.util.List;
 
 public class ContactDeletionTests extends TestBase {
 
+    @BeforeMethod
+    public void ensurePreconditions(){
+        app.contact().gotoHomePage();
+        if (! app.contact().isThereAUser()){
+            app.contact().create(new UserData("Petr", "Ivanov", "address", "123456789", "test@test.com"));
+        }
+    }
     @Test
     public void testContactDeletion() throws InterruptedException {
-        if (! app.getContactHelper().isThereAUser()){
-            app.getContactHelper().createAUser(new UserData("Petr", "Ivanov", "address", "123456789", "test@test.com"));
-        }
-        List<UserData> before = app.getContactHelper().getContactList();
-        app.getContactHelper().selectUser(before.size()-1);
-        app.getContactHelper().initUserDeletion();
-        app.getContactHelper().acceptDeletion();
+        List<UserData> before = app.contact().list();
+        int index = before.size()-1;
+        app.contact().delete(index);
         Thread.sleep(5000);
-        app.getContactHelper().gotoHomePage();
-        List<UserData> after = app.getContactHelper().getContactList();
+        app.contact().gotoHomePage();
+        List<UserData> after = app.contact().list();
         Assert.assertEquals(after.size(),before.size()-1);
 
-        before.remove(before.size()-1);
+        before.remove(index);
       //  before.sort(Comparator.comparing(m->m.getLastName()));
       //  after.sort(Comparator.comparing(m->m.getLastName()));
         Assert.assertEquals(before, after);
     }
+
 }

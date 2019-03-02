@@ -52,6 +52,7 @@ public class ContactHelper extends HelperBase{
     public void acceptDeletion() {
         acceptAlert();
     }
+
     public void gotoHomePage(){
         if (isElementPresent(By.id("maintable"))){
             return;
@@ -59,18 +60,31 @@ public class ContactHelper extends HelperBase{
         click(By.linkText("home"));
     }
 
-    public void createAUser(UserData userData) {
+    public void create(UserData userData) {
         initUserCreation();
         fillUserForm(userData);
         submitUserCreation();
         gotoHomePage();
     }
 
+    public void modify(UserData user, int index) {
+        selectUser(index);
+        initUserModification();
+        fillUserForm(user);
+        submitUserModification();
+    }
+
+    public void delete(int index) {
+        selectUser(index);
+        initUserDeletion();
+        acceptDeletion();
+    }
+
     public boolean isThereAUser() {
         return  isElementPresent(By.name(("selected[]")));
     }
 
-    public List<UserData> getContactList() {
+    public List<UserData> list() {
 
         List<UserData> contacts = new ArrayList<UserData>();
         List<WebElement> elements = wd.findElements(By.name("entry"));
