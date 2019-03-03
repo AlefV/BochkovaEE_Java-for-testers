@@ -3,33 +3,45 @@ package ru.stqa.pft.addressbook.model;
 import java.util.Objects;
 
 public class UserData {
-    private int id;
-    private final String firstName;
-    private final String lastName;
-    private final String address;
-    private final String phoneHome;
-    private final String email;
+    private int id = Integer.MAX_VALUE;
+    private String firstName;
+    private String lastName;
+    private String address;
+    private String phoneHome;
+    private String email;
 
-    public UserData(String firstName, String lastName, String address, String phoneHome, String email) {
-        this.id = Integer.MAX_VALUE;
+    public UserData withId(int id) {
+        this.id = id;
+        return this;
+    }
+
+    public UserData withFirstName(String firstName) {
         this.firstName = firstName;
+        return this;
+    }
+
+    public UserData withLastName(String lastName) {
         this.lastName = lastName;
+        return this;
+    }
+
+    public UserData withAddress(String address) {
         this.address = address;
+        return this;
+    }
+
+    public UserData withPhoneHome(String phoneHome) {
         this.phoneHome = phoneHome;
+        return this;
+    }
+
+    public UserData withEmail(String email) {
         this.email = email;
+        return this;
     }
 
     public int getId() {
         return id;
-    }
-
-    public UserData(int id, String firstName, String lastName, String address, String phoneHome, String email) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.address = address;
-        this.phoneHome = phoneHome;
-        this.email = email;
     }
 
     public String getFirstName() {
