@@ -23,8 +23,8 @@ public class ContactCreationTest extends TestBase{
       UserData user = new UserData()
               .withFirstName("Petr").withLastName("Ivanov").withAddress("address").withPhoneHome("123456789").withEmail("test@test.com");
       app.contact().create(user);
+      assertThat(app.contact().count(), equalTo(before.size()+1));
       Contacts after = app.contact().all();
-      assertThat(after.size(), equalTo(before.size()+1));
       assertThat(after, equalTo(
               before.withAdded(user.withId(after.stream().mapToInt((u) -> u.getId()).max().getAsInt()))));
 
