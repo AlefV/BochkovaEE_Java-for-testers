@@ -6,30 +6,29 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.UserData;
 
 import java.util.List;
+import java.util.Set;
 
 public class ContactDeletionTests extends TestBase {
 
     @BeforeMethod
     public void ensurePreconditions(){
         app.contact().gotoHomePage();
-        if (! app.contact().isThereAUser()){
+        if (app.contact().all().size() == 0){
             app.contact().create(new UserData()
                     .withFirstName("Petr").withLastName("Ivanov").withAddress("address").withPhoneHome("123456789").withEmail("test@test.com"));
         }
     }
     @Test
     public void testContactDeletion() throws InterruptedException {
-        List<UserData> before = app.contact().list();
-        int index = before.size()-1;
-        app.contact().delete(index);
+        Set<UserData> before = app.contact().all();
+        UserData deletedContact = before.iterator().next();
+        app.contact().delete(deletedContact);
         Thread.sleep(5000);
         app.contact().gotoHomePage();
-        List<UserData> after = app.contact().list();
+        Set<UserData> after = app.contact().all();
         Assert.assertEquals(after.size(),before.size()-1);
 
-        before.remove(index);
-      //  before.sort(Comparator.comparing(m->m.getLastName()));
-      //  after.sort(Comparator.comparing(m->m.getLastName()));
+        before.remove(deletedContact);
         Assert.assertEquals(before, after);
     }
 

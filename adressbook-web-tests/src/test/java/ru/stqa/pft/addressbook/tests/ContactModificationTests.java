@@ -5,15 +5,14 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.UserData;
 
-import java.util.Comparator;
-import java.util.List;
+import java.util.Set;
 
 public class ContactModificationTests extends TestBase{
 
     @BeforeMethod
     public void ensurePreconditions(){
         app.contact().gotoHomePage();
-        if (! app.contact().isThereAUser()){
+        if (app.contact().all().size() == 0){
             app.contact().create(new UserData()
                     .withFirstName("Petr").withLastName("Ivanov").withAddress("address").withPhoneHome("123456789").withEmail("test@test.com"));
         }
@@ -21,23 +20,18 @@ public class ContactModificationTests extends TestBase{
 
     @Test
     public void testContactModification() throws InterruptedException {
-        List<UserData> before = app.contact().list();
+        Set<UserData> before = app.contact().all();
+        UserData modifiedContact = before.iterator().next();
         UserData user = new UserData()
-                .withFirstName("Petr").withLastName("Ivanov").withAddress("address").withPhoneHome("123456789").withEmail("test@test.com");
-        int index = before.size()-1;
-        app.contact().modify(user, index);
+                .withId(modifiedContact.getId()).withFirstName("Petr").withLastName("Ivanov").withAddress("address").withPhoneHome("123456789").withEmail("test@test.com");
+        app.contact().modify(user);
         Thread.sleep(1000);
         app.contact().gotoHomePage();
-        List<UserData> after = app.contact().list();
-        //Assert.assertEquals(after.size(), before.size());
+        Set<UserData> after = app.contact().all();
+        Assert.assertEquals(after.size(), before.size());
 
-        before.remove(index);
+        before.remove(modifiedContact);
         before.add(user);
-        Comparator<? super UserData> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());
-        before.sort(byId);
-        after.sort(byId);
-        // before.sort(Comparator.comparing(m->m.getLastName()));
-       // after.sort(Comparator.comparing(m->m.getLastName()));
         Assert.assertEquals(before, after);
     }
 

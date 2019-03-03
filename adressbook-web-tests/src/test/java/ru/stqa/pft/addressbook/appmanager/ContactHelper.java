@@ -8,7 +8,9 @@ import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.UserData;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ContactHelper extends HelperBase{
 
@@ -35,6 +37,10 @@ public class ContactHelper extends HelperBase{
 
     public void selectUser(int index) {
         wd.findElements(By.name("selected[]")).get(index).click();
+    }
+
+    public void selectUserById(int id) {
+        wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
     }
 
     public void initUserModification() {
@@ -67,15 +73,21 @@ public class ContactHelper extends HelperBase{
         gotoHomePage();
     }
 
-    public void modify(UserData user, int index) {
-        selectUser(index);
+    public void modify(UserData contact) {
+        selectUserById(contact.getId());
         initUserModification();
-        fillUserForm(user);
+        fillUserForm(contact);
         submitUserModification();
     }
 
     public void delete(int index) {
         selectUser(index);
+        initUserDeletion();
+        acceptDeletion();
+    }
+
+    public void delete(UserData contact) {
+        selectUserById(contact.getId());
         initUserDeletion();
         acceptDeletion();
     }
@@ -87,6 +99,20 @@ public class ContactHelper extends HelperBase{
     public List<UserData> list() {
 
         List<UserData> contacts = new ArrayList<UserData>();
+        List<WebElement> elements = wd.findElements(By.name("entry"));
+        for (WebElement element: elements) {
+            int id = Integer.parseInt(element.findElement(By.name("selected[]")).getAttribute("value"));
+            String firstname = element.findElement(By.xpath(".//td[3]")).getText();
+            String lastname = element.findElement(By.xpath(".//td[2]")).getText();
+            contacts.add(new UserData().withId(id).withFirstName(firstname).withLastName(lastname));
+        }
+        return contacts;
+
+    }
+
+    public Set<UserData> all() {
+
+        Set<UserData> contacts = new HashSet<UserData>();
         List<WebElement> elements = wd.findElements(By.name("entry"));
         for (WebElement element: elements) {
             int id = Integer.parseInt(element.findElement(By.name("selected[]")).getAttribute("value"));
