@@ -1,8 +1,5 @@
 package ru.stqa.pft.addressbook.tests;
 
-import org.hamcrest.CoreMatchers;
-import org.hamcrest.MatcherAssert;
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.Contacts;
@@ -19,7 +16,7 @@ public class ContactModificationTests extends TestBase{
         app.contact().gotoHomePage();
         if (app.contact().all().size() == 0){
             app.contact().create(new UserData()
-                    .withFirstName("Petr").withLastName("Ivanov").withAddress("address").withPhoneHome("123456789").withEmail("test@test.com"));
+                    .withFirstName("Petr").withLastName("Ivanov").withAddress("address").withHomePhone("123456789").withEmail("test@test.com"));
         }
     }
 
@@ -28,7 +25,7 @@ public class ContactModificationTests extends TestBase{
         Contacts before = app.contact().all();
         UserData modifiedContact = before.iterator().next();
         UserData user = new UserData()
-                .withId(modifiedContact.getId()).withFirstName("Petr").withLastName("Ivanov").withAddress("address").withPhoneHome("123456789").withEmail("test@test.com");
+                .withId(modifiedContact.getId()).withFirstName("Petr").withLastName("Ivanov").withAddress("address").withHomePhone("123456789").withEmail("test@test.com");
         app.contact().modify(user);
         Thread.sleep(1000);
         app.contact().gotoHomePage();

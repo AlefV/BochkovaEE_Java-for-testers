@@ -7,8 +7,70 @@ public class UserData {
     private String firstName;
     private String lastName;
     private String address;
-    private String phoneHome;
+    private String homePhone;
+    private String mobilePhone;
+    private String workPhone;
+    private String allPhones;
     private String email;
+    private String email2;
+    private String email3;
+    private String address2;
+    private String allEmails;
+    private String allAddresses;
+
+    public String getAllEmails() {
+        return allEmails;
+    }
+
+    public UserData withAllEmails(String allEmails) {
+        this.allEmails = allEmails;
+        return this;
+    }
+
+    public String getAllAddresses() {
+        return allAddresses;
+    }
+
+    public UserData withAllAddresses(String allAddresses) {
+        this.allAddresses = allAddresses;
+        return this;
+    }
+
+    public String getEmail2() {
+        return email2;
+    }
+
+    public UserData withEmail2(String email2) {
+        this.email2 = email2;
+        return this;
+    }
+
+    public String getEmail3() {
+        return email3;
+    }
+
+    public UserData withEmail3(String email3) {
+        this.email3 = email3;
+        return this;
+    }
+
+    public String getAddress2() {
+        return address2;
+    }
+
+    public UserData withAddress2(String address2) {
+        this.address2 = address2;
+        return this;
+    }
+
+    public String getAllPhones() {
+        return allPhones;
+    }
+
+    public UserData withAllPhones(String allPhones) {
+        this.allPhones = allPhones;
+        return this;
+    }
 
     public UserData withId(int id) {
         this.id = id;
@@ -30,8 +92,26 @@ public class UserData {
         return this;
     }
 
-    public UserData withPhoneHome(String phoneHome) {
-        this.phoneHome = phoneHome;
+    public String getMobilePhone() {
+        return mobilePhone;
+    }
+
+    public UserData withMobilePhone(String mobilePhone) {
+        this.mobilePhone = mobilePhone;
+        return this;
+    }
+
+    public String getWorkPhone() {
+        return workPhone;
+    }
+
+    public UserData withWorkPhone(String workPhone) {
+        this.workPhone = workPhone;
+        return this;
+    }
+
+    public UserData withHomePhone(String homePhone) {
+        this.homePhone = homePhone;
         return this;
     }
 
@@ -56,8 +136,8 @@ public class UserData {
         return address;
     }
 
-    public String getPhoneHome() {
-        return phoneHome;
+    public String getHomePhone() {
+        return homePhone;
     }
 
     public String getEmail() {

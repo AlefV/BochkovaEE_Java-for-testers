@@ -2,15 +2,15 @@ package ru.stqa.pft.addressbook.tests;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.UserData;
+
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.testng.Assert.assertEquals;
 
-public class ContactDeletionTests extends TestBase {
-
+public class ContactAddressesTests extends TestBase {
     @BeforeMethod
     public void ensurePreconditions(){
         app.contact().gotoHomePage();
@@ -19,16 +19,19 @@ public class ContactDeletionTests extends TestBase {
                     .withFirstName("Petr").withLastName("Ivanov").withAddress("address").withHomePhone("123456789").withEmail("test@test.com"));
         }
     }
+
     @Test
-    public void testContactDeletion() throws InterruptedException {
-        Contacts before = app.contact().all();
-        UserData deletedContact = before.iterator().next();
-        app.contact().delete(deletedContact);
-        Thread.sleep(5000);
+    public void testContactAddress(){
         app.contact().gotoHomePage();
-        assertEquals(app.contact().count(),before.size()-1);
-        Contacts after = app.contact().all();
-        assertThat(after, equalTo(before.without(deletedContact)));
+        UserData contact = app.contact().all().iterator().next();
+        UserData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
+
+        assertThat(contact.getAllAddresses(), equalTo(merge(contactInfoFromEditForm)));
     }
 
+    private String merge(UserData contact) {
+        return Arrays.asList(contact.getAddress(), contact.getAddress2())
+                .stream().filter((s) -> ! s.equals(""))
+                .collect(Collectors.joining("\n"));
+    }
 }

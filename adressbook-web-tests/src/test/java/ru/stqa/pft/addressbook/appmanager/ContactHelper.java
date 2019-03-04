@@ -3,15 +3,10 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
-import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.UserData;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class ContactHelper extends HelperBase{
 
@@ -27,7 +22,7 @@ public class ContactHelper extends HelperBase{
         type(By.name("firstname"), userData.getFirstName());
         type(By.name("lastname"), userData.getLastName());
         type(By.name("address"), userData.getAddress());
-        type(By.name("home"), userData.getPhoneHome());
+        type(By.name("home"), userData.getHomePhone());
         type(By.name("email"), userData.getEmail());
 
     }
@@ -108,13 +103,36 @@ public class ContactHelper extends HelperBase{
             int id = Integer.parseInt(element.findElement(By.name("selected[]")).getAttribute("value"));
             String firstname = element.findElement(By.xpath(".//td[3]")).getText();
             String lastname = element.findElement(By.xpath(".//td[2]")).getText();
-            contactCache.add(new UserData().withId(id).withFirstName(firstname).withLastName(lastname));
+            String allPhones = element.findElement(By.xpath(".//td[6]")).getText();
+            String allEmails = element.findElement(By.xpath(".//td[5]")).getText();
+            String allAddresses = element.findElement(By.xpath(".//td[4]")).getText();
+            contactCache.add(new UserData().withId(id).withFirstName(firstname).withLastName(lastname)
+                    .withAllPhones(allPhones).withAllEmails(allEmails).withAllAddresses(allAddresses));
         }
         return new Contacts(contactCache);
 
+    }
+    public UserData infoFromEditForm(UserData contact) {
+        initUserModification(contact.getId());
+        String firstname = wd.findElement(By.name("firstname")).getAttribute("value");
+        String lastname = wd.findElement(By.name("lastname")).getAttribute("value");
+        String home = wd.findElement(By.name("home")).getAttribute("value");
+        String mobile = wd.findElement(By.name("work")).getAttribute("value");
+        String work = wd.findElement(By.name("work")).getAttribute("value");
+        String email = wd.findElement(By.name("email")).getAttribute("value");
+        String email2 = wd.findElement(By.name("email2")).getAttribute("value");
+        String email3 = wd.findElement(By.name("email3")).getAttribute("value");
+        String address = wd.findElement(By.name("address")).getAttribute("value");
+        String address2 = wd.findElement(By.name("address2")).getAttribute("value");
+        wd.navigate().back();
+        return new UserData().withId(contact.getId()).withFirstName(firstname).withLastName(lastname)
+                .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work)
+                .withEmail(email).withEmail2(email2).withEmail3(email3)
+                .withAddress(address).withAddress2(address2);
     }
 
     public int count() {
         return wd.findElements(By.name("selected[]")).size();
     }
+
 }
