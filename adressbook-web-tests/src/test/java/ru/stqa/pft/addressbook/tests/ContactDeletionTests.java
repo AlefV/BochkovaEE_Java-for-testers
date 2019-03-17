@@ -14,20 +14,20 @@ public class ContactDeletionTests extends TestBase {
     @BeforeMethod
     public void ensurePreconditions(){
         app.contact().gotoHomePage();
-        if (app.contact().all().size() == 0){
+        if (app.db().contacts().size() == 0){
             app.contact().create(new UserData()
                     .withFirstName("Petr").withLastName("Ivanov").withAddress("address").withHomePhone("123456789").withEmail("test@test.com"));
         }
     }
     @Test
     public void testContactDeletion() throws InterruptedException {
-        Contacts before = app.contact().all();
+        Contacts before = app.db().contacts();
         UserData deletedContact = before.iterator().next();
         app.contact().delete(deletedContact);
         Thread.sleep(5000);
         app.contact().gotoHomePage();
         assertEquals(app.contact().count(),before.size()-1);
-        Contacts after = app.contact().all();
+        Contacts after = app.db().contacts();
         assertThat(after, equalTo(before.without(deletedContact)));
     }
 
