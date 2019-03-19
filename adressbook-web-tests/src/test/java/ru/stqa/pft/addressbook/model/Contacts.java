@@ -41,5 +41,13 @@ public class Contacts extends ForwardingSet<UserData> {
         return contacts;
     }
 
+    public UserData getContact(int id, Contacts contacts) {
+        for (UserData result :contacts){
+            if (result.getId() == id){
+                return result;
+            }
+        }
+        return contacts.iterator().next();
+    }
 }
 

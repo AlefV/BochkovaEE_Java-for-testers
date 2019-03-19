@@ -3,7 +3,10 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.UserData;
 
 import java.util.List;
@@ -18,13 +21,23 @@ public class ContactHelper extends HelperBase{
         click(By.xpath("(//input[@name='submit'])[2]"));
     }
 
-    public void fillUserForm(UserData userData) {
+    public void fillUserForm(UserData userData, boolean creation) {
         type(By.name("firstname"), userData.getFirstName());
         type(By.name("lastname"), userData.getLastName());
         type(By.name("address"), userData.getAddress());
         type(By.name("home"), userData.getHomePhone());
         type(By.name("email"), userData.getEmail());
         attach(By.name("photo"), userData.getPhoto());
+
+        if (creation){
+            if(userData.getGroups().size() >0){
+                Assert.assertTrue(userData.getGroups().size() ==1);
+                new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(userData.getGroups().iterator().next().getName());
+            }
+            else {
+                Assert.assertFalse(isElementPresent(By.name("new_group")));
+            }
+        }
 
     }
 
@@ -66,7 +79,7 @@ public class ContactHelper extends HelperBase{
 
     public void create(UserData userData) {
         initUserCreation();
-        fillUserForm(userData);
+        fillUserForm(userData, true);
         submitUserCreation();
         contactCache = null;
         gotoHomePage();
@@ -75,7 +88,7 @@ public class ContactHelper extends HelperBase{
     public void modify(UserData contact) {
         selectUserById(contact.getId());
         initUserModification(contact.getId());
-        fillUserForm(contact);
+        fillUserForm(contact, false);
         submitUserModification();
         contactCache = null;
     }
@@ -134,6 +147,21 @@ public class ContactHelper extends HelperBase{
 
     public int count() {
         return wd.findElements(By.name("selected[]")).size();
+    }
+
+    public void selectGroup(GroupData groupToAdd) {
+        new Select(wd.findElement(By.name("to_group"))).selectByValue(String.valueOf(groupToAdd.getId()));
+    }
+
+    private void clickToAddGroup() {
+        wd.findElement(By.name("add")).click();
+    }
+
+    public void addContactToGroup(UserData contactToAddGroup, GroupData groupToAdd) {
+        gotoHomePage();
+        selectUserById(contactToAddGroup.getId());
+        selectGroup(groupToAdd);
+        clickToAddGroup();
     }
 
 }
