@@ -40,7 +40,8 @@ public class HbConnectionTest {
     public void testHbConnection(){
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        List<UserData> result = session.createQuery( "from UserData where deprecated = '0000-00-00'" ).list();
+        int getid = 43;
+        List<UserData> result = session.createQuery( "from UserData where deprecated = '0000-00-00' and id = '" +String.valueOf(getid) + "'" ).list();
         session.getTransaction().commit();
         session.close();
         for ( UserData contact : result ) {

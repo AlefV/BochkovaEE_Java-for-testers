@@ -164,4 +164,20 @@ public class ContactHelper extends HelperBase{
         clickToAddGroup();
     }
 
+    private void selectGroupForView(GroupData groupToView) {
+        new Select(wd.findElement(By.name("group"))).selectByValue(String.valueOf(groupToView.getId()));
+    }
+
+    private void clickToDeleteGroup() {
+        wd.findElement(By.name("remove")).click();
+    }
+
+    public void deleteContactFromGroup(UserData contactToDeleteGroup, GroupData groupToDelete) {
+        gotoHomePage();
+        selectGroupForView(groupToDelete);
+        selectUserById(contactToDeleteGroup.getId());
+        clickToDeleteGroup();
+    }
+
+
 }
