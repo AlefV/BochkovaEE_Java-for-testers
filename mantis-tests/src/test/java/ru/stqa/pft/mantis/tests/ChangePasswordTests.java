@@ -25,7 +25,7 @@ public class ChangePasswordTests extends TestBase {
     public void testChangePassword() throws IOException, MessagingException {
         Users users = app.db().users();
         UserData user = users.iterator().next();
-        while(user.getUsername() == "administrator"){
+        while(user.getUsername().equals("administrator")){
             user = users.iterator().next();
         }
         String password = "password123";
