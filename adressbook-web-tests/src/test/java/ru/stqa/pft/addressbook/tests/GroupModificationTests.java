@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
 
+import java.io.IOException;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
@@ -27,7 +28,8 @@ public class GroupModificationTests extends TestBase {
     }
 
     @Test
-    public void testGroupModification(){
+    public void testGroupModification() throws IOException {
+        skipIfNotFixed(1000);
         Groups before = app.db().groups();
         GroupData modifiedGroup = before.iterator().next();
         GroupData group = new GroupData().withId(modifiedGroup.getId()).withName("test1").withHeader("test2").withFooter("test3");

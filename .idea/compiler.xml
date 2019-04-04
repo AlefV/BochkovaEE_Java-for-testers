@@ -2,10 +2,12 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
-      <module name="adressbook-web-tests.main" target="1.10" />
-      <module name="adressbook-web-tests.test" target="1.10" />
+      <module name="adressbook-web-tests.main" target="1.8" />
+      <module name="adressbook-web-tests.test" target="1.8" />
       <module name="mantis-tests.main" target="1.8" />
       <module name="mantis-tests.test" target="1.8" />
+      <module name="rest-sample.main" target="1.8" />
+      <module name="rest-sample.test" target="1.8" />
       <module name="Sandbox.main" target="1.10" />
       <module name="Sandbox.test" target="1.10" />
       <module name="soap-sample.main" target="1.8" />
