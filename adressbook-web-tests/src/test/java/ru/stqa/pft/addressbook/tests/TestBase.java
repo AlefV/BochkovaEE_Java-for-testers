@@ -76,7 +76,7 @@ public class TestBase {
         JsonElement issues = parsed.getAsJsonObject().get("issues");
         Set<Issue> issuesNew = new Gson().fromJson(issues, new TypeToken<Set<Issue>>(){}.getType());
         Issue issue = issuesNew.iterator().next();
-        return !issue.getStatus().equals("deleted");
+        return !issue.getStatus().equals("resolved");
     }
 
     public void skipIfNotFixed(int issueId) throws IOException {
