@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="25388ddb-3556-4649-bde5-0b13eba480ca" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/adressbook-web-tests/src/test/resources/remote.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adressbook-web-tests/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/adressbook-web-tests/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/adressbook-web-tests/src/test/java/ru/stqa/pft/addressbook/appmanager/ApplicationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/adressbook-web-tests/src/test/java/ru/stqa/pft/addressbook/appmanager/ApplicationManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/adressbook-web-tests/src/test/resources/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/adressbook-web-tests/src/test/resources/local.properties" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/Sandbox/.gradle/" />
     <ignored path="$PROJECT_DIR$/Sandbox/build/" />
@@ -119,8 +118,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/adressbook-web-tests/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="600">
-              <caret line="50" selection-start-line="50" selection-end-line="50" />
+            <state relative-caret-position="158">
+              <caret line="47" column="5" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -128,13 +127,13 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/adressbook-web-tests/src/test/java/ru/stqa/pft/addressbook/appmanager/ApplicationManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="141">
-              <caret line="49" column="45" selection-start-line="49" selection-start-column="45" selection-end-line="49" selection-end-column="45" />
+            <state relative-caret-position="158">
+              <caret line="52" column="94" selection-start-line="52" selection-start-column="94" selection-end-line="52" selection-end-column="94" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2455#2456#0" expanded="true" />
-                <element signature="e#2532#2533#0" expanded="true" />
-                <element signature="e#2606#2607#0" expanded="true" />
+                <element signature="e#2670#2671#0" expanded="true" />
+                <element signature="e#2747#2748#0" expanded="true" />
+                <element signature="e#2821#2822#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -229,16 +228,16 @@
         <option value="$PROJECT_DIR$/rest-sample/build.gradle" />
         <option value="$PROJECT_DIR$/mantis-tests/build.gradle" />
         <option value="$PROJECT_DIR$/adressbook-web-tests/src/test/resources/testng-groups.xml" />
-        <option value="$PROJECT_DIR$/adressbook-web-tests/build.gradle" />
         <option value="$PROJECT_DIR$/adressbook-web-tests/src/test/resources/local.properties" />
         <option value="$PROJECT_DIR$/adressbook-web-tests/src/test/resources/remote.properties" />
+        <option value="$PROJECT_DIR$/adressbook-web-tests/build.gradle" />
         <option value="$PROJECT_DIR$/adressbook-web-tests/src/test/java/ru/stqa/pft/addressbook/appmanager/ApplicationManager.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="44" />
-    <option name="y" value="576" />
+    <option name="x" value="57" />
+    <option name="y" value="551" />
     <option name="width" value="1936" />
     <option name="height" value="534" />
   </component>
@@ -405,7 +404,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554555981578" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554556904743" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/Sandbox/src/main/java" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/rest-sample/build.gradle" />
@@ -593,7 +592,7 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="44" y="576" width="1936" height="534" extended-state="0" />
+    <frame x="57" y="551" width="1936" height="534" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27665246" />
@@ -1036,13 +1035,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/adressbook-web-tests/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="50" selection-start-line="50" selection-end-line="50" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/adressbook-web-tests/src/test/resources/local.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -1057,15 +1049,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/adressbook-web-tests/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="47" column="5" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/adressbook-web-tests/src/test/java/ru/stqa/pft/addressbook/appmanager/ApplicationManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="49" column="45" selection-start-line="49" selection-start-column="45" selection-end-line="49" selection-end-column="45" />
+        <state relative-caret-position="158">
+          <caret line="52" column="94" selection-start-line="52" selection-start-column="94" selection-end-line="52" selection-end-column="94" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2455#2456#0" expanded="true" />
-            <element signature="e#2532#2533#0" expanded="true" />
-            <element signature="e#2606#2607#0" expanded="true" />
+            <element signature="e#2670#2671#0" expanded="true" />
+            <element signature="e#2747#2748#0" expanded="true" />
+            <element signature="e#2821#2822#0" expanded="true" />
           </folding>
         </state>
       </provider>
